@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Регистрация</title>
+</head>
+<body>
+
+<h2>Регистрация</h2>
+<hr />
+
+<form action="#" th:action="@{/sign-up}" th:object="${signUp}" method="post">
+    <ul th:if="${#fields.hasAnyErrors()}">
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+    </ul>
+
+    <input type="text" th:field="*{username}" placeholder="Логин" /><br />
+    <input type="password" th:field="*{password}" placeholder="Пароль" /><br />
+    <input type="password" th:field="*{confirmPassword}" placeholder="Повторите пароль" /><br />
+    <input type="submit" value="Зарегистрироваться" />
+    <span>или <a th:href="@{/sign-in}">Войти</a></span>
+</form>
+
+</body>
+</html>

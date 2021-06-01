@@ -1,0 +1,44 @@
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Подключения</title>
+</head>
+<body>
+
+<h2>
+  <span>Подключения</span>
+  <span style="float: right;">
+    <span style="margin-right: 15px;" sec:authentication="name"></span>
+    <a th:href="@{/sign-out}" style="float: right;">Выход</a>
+  </span>
+</h2>
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Хост</th>
+      <th>Порт</th>
+      <th>База данных</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <a th:href="@{/connections/add}">Добавить</a>
+
+  <tr th:each="connection: ${connections}">
+    <td th:text="${connection.host}"></td>
+    <td th:text="${connection.port}"></td>
+    <td th:text="${connection.database}"></td>
+    <td>
+      <a th:href="@{/connections/__${connection.id}__/tables}">Смотреть</a>
+      <a th:href="@{/connections/__${connection.id}__/edit}">Редактировать</a>
+      <a th:href="@{/connections/__${connection.id}__/delete}">Удалить</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

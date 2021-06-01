@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Подключение</title>
+</head>
+<body>
+
+<h2>
+    <span th:text="${connection.id == null ? 'Создание нового подключкения' : 'Редактирование подключения'}"></span>
+    <span style="float: right;">
+    <span style="margin-right: 15px;" sec:authentication="name"></span>
+    <a th:href="@{/sign-out}" style="float: right;">Выход</a>
+  </span>
+</h2>
+<hr />
+
+<form action="#" th:action="@{/connections/__${connection.id == null ? 'add' : (connection.id + '/edit')}__}"
+      th:object="${connection}" method="post">
+    <ul th:if="${#fields.hasAnyErrors()}">
+        <li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li>
+    </ul>
+
+    <input type="text" th:field="*{host}" placeholder="Хост"><br />
+    <input type="text" th:field="*{port}" placeholder="Порт"><br />
+    <input type="text" th:field="*{username}" placeholder="Пользователь"><br />
+    <input type="text" th:field="*{password}" placeholder="Пароль"><br />
+    <input type="text" th:field="*{database}" placeholder="База данных"><br />
+    <input type="submit" value="Сохранить">
+</form>
+
+</body>
+</html>

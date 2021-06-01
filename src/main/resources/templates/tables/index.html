@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Таблицы</title>
+</head>
+<body>
+
+<h2>
+    <span>Список таблиц</span>
+    <span style="float: right;">
+    <span style="margin-right: 15px;" sec:authentication="name"></span>
+    <a th:href="@{/sign-out}" style="float: right;">Выход</a>
+  </span>
+</h2>
+<hr />
+
+<table>
+    <thead>
+    <tr>
+        <th>Схема</th>
+        <th>Таблица</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="table: ${tables}">
+        <td th:text="${table.schema}"></td>
+        <td th:text="${table.name}"></td>
+        <td>
+            <a th:href="@{/connections/__${connectionId}__/tables/__${table.schema}__.__${table.name}__/rows}">Смотреть</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="../..">Назад</a>
+
+</body>
+</html>
